@@ -12,7 +12,7 @@ switch (action.type) {
     case 'setMap':
         return{
             ...state,
-            isMapReady: false,
+            isMapReady: true,
             map: action.payload
         }
     default:
