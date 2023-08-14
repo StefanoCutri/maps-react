@@ -16,7 +16,6 @@ export const placesReducer = (
         isLoading: false,
         userLocation: action.payload,
       };
-      break;
 
     default:
       return state;
