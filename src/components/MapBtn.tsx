@@ -24,6 +24,7 @@ export const MapBtn = () => {
         zIndex: 999,
         borderRadius: 100,
         background: 'white',
+        border: '1px solid #cccc'
         
     }}>
         <i className="fa-solid fa-location-crosshairs"></i>
