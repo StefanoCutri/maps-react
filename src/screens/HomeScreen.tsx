@@ -1,7 +1,9 @@
-import React from 'react'
+import { MapView } from "../components"
 
 export const HomeScreen = () => {
   return (
-    <div>HomeScreen</div>
+    <div className='justify-content-center aling-items-center'>
+      <MapView/>
+    </div>
   )
 }
