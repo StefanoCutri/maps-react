@@ -29,7 +29,7 @@ export const MapProvider = ({ children }: Props) => {
     `)
 
     new Marker({
-      color: 'ff00'
+      color: '#ff0000'
     })
     .setLngLat(map.getCenter())
     .setPopup(locationPopUp)
