@@ -3,15 +3,20 @@ import { PlacesContext } from "./PlacesContext";
 import { placesReducer } from "./PlacesReducer";
 import { getUserLocation } from "../../helpers/getUserLocation";
 import { searchApi } from "../../apis";
+import { Feature } from "../../interfaces/places";
 
 export interface PlacesState {
   isLoading: boolean;
   userLocation?: [number, number];
+  isLoadingPlaces: boolean;
+  places: Feature[]
 }
 
 const INITIAL_STATE: PlacesState = {
   isLoading: true,
   userLocation: undefined,
+  isLoadingPlaces: false,
+  places: []
 };
 interface Props {
   children: JSX.Element | JSX.Element[];
