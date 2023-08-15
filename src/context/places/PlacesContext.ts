@@ -2,7 +2,8 @@ import { createContext } from "react";
 
 export interface PlacesContextProps {
     isLoading: boolean;
-    userLocation?: [number, number]
+    userLocation?: [number, number],
+    searchPlacesByTerm: (query: string) => Promise<never[] | undefined>
 }
 
 export const PlacesContext = createContext<PlacesContextProps>({} as PlacesContextProps)
