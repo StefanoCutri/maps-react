@@ -6,9 +6,11 @@ export const SearchResults = () => {
   const { places, isLoadingPlaces } = useContext(PlacesContext);
 
   if (isLoadingPlaces) {
-    return (
-       <LoadingPlaces/>
-    )
+    return <LoadingPlaces />;
+  }
+
+  if (places.length === 0) {
+    return <></>;
   }
 
   return (
@@ -21,10 +23,12 @@ export const SearchResults = () => {
             style={{
               fontSize: "12px",
             }}
-          >{place.place_name}</p>
+          >
+            {place.place_name}
+          </p>
 
           <button className="btn btn-outline-primary btn-sm">
-          <i className="fa-solid fa-diamond-turn-right"></i>
+            <i className="fa-solid fa-diamond-turn-right"></i>
           </button>
         </li>
       ))}
