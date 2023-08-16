@@ -40,6 +40,10 @@ export const MapProvider = ({ children }: Props) => {
         .setLngLat([lng, lnt])
         .addTo(state.map!);
       newMarkers.push(newMarker);
+      dispatch({
+        type: "setMarker",
+        payload: newMarkers,
+      });
     }
   }, [places]);
 
