@@ -1,12 +1,12 @@
-import { useContext, useState} from "react";
+import { useContext, useState } from "react";
 import { MapContext, PlacesContext } from "../context";
 import { LoadingPlaces } from "./";
 import { Feature } from "../interfaces/places";
 
 export const SearchResults = () => {
-  const { places, isLoadingPlaces } = useContext(PlacesContext);
-  const { map } = useContext(MapContext);
-  const [activeId, setActiveId] = useState('')
+  const { places, isLoadingPlaces, userLocation } = useContext(PlacesContext);
+  const { map, getRouteBetweenPoints } = useContext(MapContext);
+  const [activeId, setActiveId] = useState("");
 
   if (isLoadingPlaces) {
     return <LoadingPlaces />;
@@ -16,9 +16,14 @@ export const SearchResults = () => {
     return <></>;
   }
 
-  const onPlaceClick = (place: Feature) => {
+  const getRoutes = (place: Feature) => {
+    if (!userLocation) return;
+    const [lng, lnt] = place.center
+    getRouteBetweenPoints(userLocation, [lng, lnt] );
+  };
 
-    setActiveId(place.id)
+  const onPlaceClick = (place: Feature) => {
+    setActiveId(place.id);
 
     const [lng, lnt] = place.center;
     map?.flyTo({
@@ -30,10 +35,16 @@ export const SearchResults = () => {
   return (
     <ul className="list-group mt-3">
       {places.map((place) => (
-        <li key={place.id} className={`list-group-item list-group-item-action pointer ${(activeId === place.id) && 'active' }`} onClick={() => onPlaceClick(place)}>
+        <li
+          key={place.id}
+          className={`list-group-item list-group-item-action pointer ${
+            activeId === place.id && "active"
+          }`}
+          onClick={() => onPlaceClick(place)}
+        >
           <h6>{place.text_es}</h6>
           <p
-            className={`${activeId === place.id ? '' : 'text-muted'}`}
+            className={`${activeId === place.id ? "" : "text-muted"}`}
             style={{
               fontSize: "12px",
             }}
@@ -41,7 +52,14 @@ export const SearchResults = () => {
             {place.place_name}
           </p>
 
-          <button className={`btn  btn-sm ${activeId === place.id ? 'btn-outline-light' : 'btn-outline-primary'}`}>
+          <button
+          onClick={() => getRoutes(place)}
+            className={`btn  btn-sm ${
+              activeId === place.id
+                ? "btn-outline-light"
+                : "btn-outline-primary"
+            }`}
+          >
             <i className="fa-solid fa-diamond-turn-right"></i>
           </button>
         </li>
