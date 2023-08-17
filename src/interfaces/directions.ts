@@ -104,3 +104,4 @@ export interface Waypoint {
     name:     string;
     location: number[];
 }
+   
