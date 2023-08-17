@@ -1,9 +1,9 @@
 import { useContext, useEffect, useReducer } from "react";
 import { Map, Marker, Popup } from "mapbox-gl";
 
-import {directionsApi} from "../../apis";
+import { directionsApi } from "../../apis";
 import { DirectionsResponse } from "../../interfaces/directions";
-import { MapReducer, PlacesContext, MapContext} from ".././index";
+import { MapReducer, PlacesContext, MapContext } from ".././index";
 
 export interface MapState {
   isMapReady: boolean;
@@ -69,7 +69,13 @@ export const MapProvider = ({ children }: Props) => {
     const resp = await directionsApi.get<DirectionsResponse>(
       `/${start.join(",")};${end.join(",")}`
     );
-    console.log(resp.data.routes);
+    const { distance, duration, geometry } = resp.data.routes[0];
+    let kms = distance / 1000;
+    kms = Math.round(kms * 100)
+    kms /= 100
+
+    const minutes = Math.floor(duration / 60)
+    console.log({kms, minutes});
   };
 
   return (
