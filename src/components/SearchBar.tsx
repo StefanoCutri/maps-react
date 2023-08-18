@@ -4,7 +4,7 @@ import { SearchResults } from "./SearchResults";
 
 export const SearchBar = () => {
   const debouncedRef = useRef<NodeJS.Timeout>();
-  const {searchPlacesByTerm} = useContext(PlacesContext)
+  const { searchPlacesByTerm } = useContext(PlacesContext);
 
   const onQueryChanged = (event: ChangeEvent<HTMLInputElement>) => {
     if (debouncedRef.current) {
@@ -12,7 +12,7 @@ export const SearchBar = () => {
     }
 
     debouncedRef.current = setTimeout(() => {
-      searchPlacesByTerm(event.target.value)
+      searchPlacesByTerm(event.target.value);
     }, 1000);
   };
 
@@ -25,7 +25,6 @@ export const SearchBar = () => {
         onChange={onQueryChanged}
       />
       <SearchResults />
-
     </div>
   );
 };

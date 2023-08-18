@@ -18,8 +18,8 @@ export const SearchResults = () => {
 
   const getRoutes = (place: Feature) => {
     if (!userLocation) return;
-    const [lng, lnt] = place.center
-    getRouteBetweenPoints(userLocation, [lng, lnt] );
+    const [lng, lnt] = place.center;
+    getRouteBetweenPoints(userLocation, [lng, lnt]);
   };
 
   const onPlaceClick = (place: Feature) => {
@@ -53,7 +53,7 @@ export const SearchResults = () => {
           </p>
 
           <button
-          onClick={() => getRoutes(place)}
+            onClick={() => getRoutes(place)}
             className={`btn  btn-sm ${
               activeId === place.id
                 ? "btn-outline-light"
