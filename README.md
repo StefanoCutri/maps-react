@@ -9,7 +9,7 @@
 
 ## Demo
 
-You can check out the live website at [stefanocutri-portfolio](https://stefanocutri-portfolio.vercel.app](https://maps-react-flax.vercel.app/).
+You can check out the live website at [maps-app](https://maps-react-flax.vercel.app/).
 
 ## Features
 
